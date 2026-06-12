@@ -1,0 +1,477 @@
+/* --- RESET E TIPOGRAFIA --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    background-color: #121212;
+    color: #ffffff;
+    overflow: hidden; /* Esconde o scroll padrão do body */
+}
+
+
+
+/* --- PALETA DE CORES SPOTIFY WRAPPED --- */
+.slide-blue   { background-color: #121212; }
+.slide-purple { background-color: #0b2661; }
+.slide-green  { background-color: #37883e; }
+.slide-dark   { background-color: #121212; }
+.slide-orange { background-color: #732896; }
+
+
+
+
+/* --- TEXTOS E BADGES --- */
+.wrapped-container {
+    max-width: 800px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    padding: 40px; /* Cria um respiro interno para a "caixinha" de vidro que vai aparecer */
+    border-radius: 25px; /* Bordas bem redondinhas e fofas */
+    border: 2px solid transparent; /* Borda invisível para não dar solavanco na animação */
+}
+
+.wrapped-container:hover {
+    transform: translateY(-10px); /* A seção inteira dá uma flutuadinha para cima */
+}
+
+.wrapped-badge {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    align-self: flex-start;
+    margin-bottom: 25px;
+}
+
+.wrapped-hero-title {
+    font-size: 4.5rem;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -2px;
+}
+
+.wrapped-title {
+    font-size: 3.5rem;
+    font-weight: 900;
+    margin-bottom: 15px;
+    line-height: 1.1;
+    letter-spacing: -1px;
+}
+
+.highlight-text { color: #1db954; }
+
+.wrapped-desc {
+    font-size: 1.3rem;
+    line-height: 1.5;
+    font-weight: 400;
+}
+
+/* Indicador de rolagem animado */
+.scroll-indicator {
+    margin-top: 50px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.7);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; transform: translateY(5px); }
+}
+
+/* --- CARROSSEL PÔSTER --- */
+/* --- CARROSSEL PÔSTER --- */
+.spotify-poster-frame {
+    background: #000;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    border: 4px solid #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    
+    /* REGRAS PARA DIMINUIR A FOTO: */
+    max-width: 400px; /* Reduz o tamanho máximo */
+    width: 100%;      /* Mantém responsivo no celular */
+    margin: 0 auto;   /* Garante que a foto fique centralizada */
+}
+
+.carousel-container { 
+    position: relative; 
+    width: 100%;
+    aspect-ratio: 1 / 1; /* Garante que o carrossel seja um quadrado perfeito */
+    background: #000;
+    overflow: hidden;    /* Esconde as fotos que estão fora da tela nas laterais */
+}
+
+.carousel-track { 
+    display: flex;       /* Organiza as fotos lado a lado em linha */
+    width: 100%; 
+    height: 100%;
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1); /* Adiciona o efeito de deslizar */
+}
+
+/* A "caixa" invisível que trava o tamanho de cada imagem */
+.carousel-slide {
+    flex: 0 0 100%;      /* Força cada slide a ocupar exatamente 100% da largura do carrossel */
+    width: 100%;
+    height: 500;
+    min-width: 0;        /* 🌟 CORREÇÃO CRÍTICA: Desativa o cálculo automático de largura do Flexbox */
+    max-width: 100%;     /* 🌟 CORREÇÃO CRÍTICA: Garante que o slide nunca passe de 100% da caixinha */
+    overflow: hidden;
+}
+
+/* A regra agora aplica-se à imagem dentro do slide */
+.carousel-slide img { 
+    width: 100%;
+    height: 100%;
+    object-fit: contain; 
+    display: block;      /* 🌟 Evita pequenos espaçamentos fantasmas na base da imagem */
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #1db954;
+    border: none;
+    color: #fff;
+    font-size: 1.5rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-weight: bold;
+    z-index: 10;
+}
+.btn-prev { left: 15px; }
+.btn-next { right: 15px; }
+
+/* --- SCROLL SNAPPING (O Efeito "Stories") --- */
+.wrapped-scroller {
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory; /* Força a parada exata nos slides */
+    scroll-behavior: smooth;
+}
+
+.spotify-slide {
+    min-height: 100dvh; /* Muda de height fixa para min-height adaptável */
+    scroll-snap-align: start; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 15px; /* Reduzimos o padding lateral e superior */
+    position: relative;
+    margin-bottom: 20px; 
+    border-radius: 0 0 30px 30px; 
+
+}
+
+/* Garante que a última seção não tenha espaço sobrando no final da página */
+.spotify-slide:last-child {
+    margin-bottom: 0;
+    border-radius: 0;
+}
+
+/* --- CARD FINAL E BOTÃO --- */
+.spotify-card-final {
+    background: #181818;
+    padding: 60px 40px;
+    border-radius: 15px;
+    border: 1px solid #282828;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.btn-celebrar {
+    background: #1db954;
+    color: #fff;
+    padding: 18px 40px;
+    font-size: 1.2rem;
+    font-weight: 900;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    margin-top: 30px;
+    transition: transform 0.2s, background 0.2s;
+}
+
+.btn-celebrar:hover {
+    transform: scale(1.05);
+    background: #1ed760;
+}
+
+
+/* --- PLAYER FIXO --- */
+/* --- PLAYER FIXO GLOBAL (Computador e Celular) --- */
+.spotify-player {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.15); /* Efeito de vidro fofo */
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    z-index: 1000;
+    cursor: pointer;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* ESTADO FECHADO (Bolinha com o Coração) */
+.spotify-player.collapsed {
+    width: 60px;
+    height: 60px;
+    padding: 0;
+    justify-content: center;
+}
+
+.spotify-player.collapsed .player-content {
+    display: none; /* Esconde o player inteiro */
+}
+
+.spotify-player.collapsed .music-icon {
+    display: block;
+    font-size: 1.8rem;
+    animation: pulsar 2s infinite; /* O coração fica pulsando */
+}
+
+/* ESTADO ABERTO (Abas e botões aparecem) */
+.spotify-player.expanded {
+    width: 280px;
+    height: 70px;
+    padding: 10px 20px;
+}
+
+.spotify-player.expanded .music-icon {
+    display: none; /* Esconde o coração do modo fechado */
+}
+
+.spotify-player.expanded .player-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 10px;
+}
+
+/* Animação do Coração Pulsando */
+@keyframes pulsar {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+.spotify-play-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Mantenha o resto das suas cores e tamanhos como estão */
+}
+
+
+/* CHUVA DE CORAÇÕES */
+.coracao {
+    position: fixed;
+    bottom: -50px;
+    pointer-events: none;
+    z-index: 9999;
+    animation: flutuar 4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes flutuar {
+    0% { transform: translateY(0) scale(0); opacity: 0; }
+    10% { opacity: 1; transform: translateY(-10vh) scale(1); }
+    100% { transform: translateY(-120vh) scale(1.5) rotate(30deg); opacity: 0; }
+}
+
+/* ==========================================
+   RESPONSIVIDADE (CELULARES)
+========================================== */
+@media (max-width: 768px) {
+    /* Ajustes Gerais para não invadir seções */
+    .wrapped-container {
+        padding: 20px 15px; /* Reduz a caixinha de vidro no mobile */
+    }
+    
+    /* Textos consideravelmente menores */
+    .wrapped-hero-title { font-size: 2.2rem; }
+    .wrapped-title { font-size: 1.8rem; }
+    .wrapped-desc { font-size: 1rem; margin-bottom: 15px; }
+    
+    /* Contador Gigante menor */
+    .giant-number { font-size: 2.5rem; }
+    .giant-subtitle { font-size: 0.9rem; }
+
+    /* Acordeão (Histórias) mais compacto */
+    .accordion-header { padding: 15px; }
+    .accordion-title { font-size: 1rem; }
+    .accordion-content p { font-size: 0.9rem; padding: 0 15px 15px 15px; }
+
+    /* Reduz a foto no celular para não empurrar o texto para fora */
+    .spotify-poster-frame { max-width: 260px; }
+
+    /* Card Final */
+    .spotify-card-final { padding: 30px 20px; }
+    .btn-celebrar { padding: 15px 30px; font-size: 1rem; margin-top: 15px;}
+
+    /* -------------------------------------
+       NOVO PLAYER MOBILE
+    ------------------------------------- */
+
+    .mobile-music-toggle {
+        display: block; /* Mostra o ícone da nota musical */
+        background: transparent;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        width: 100%;
+        height: 100%;
+    }
+
+    .player-content {
+        display: none; /* Esconde o conteúdo por padrão */
+        gap: 10px;
+        align-items: center;
+    }
+
+    /* Reduz a foto da música no mobile */
+    .player-cover { width: 25px; height: 25px; font-size: 0.7rem; }
+    .player-title { font-size: 0.75rem; }
+    .player-artist { font-size: 0.65rem; }
+    .spotify-play-btn { width: 35px; height: 35px; }
+}
+
+/* Oculta o botão de expandir no COMPUTADOR */
+@media (min-width: 769px) {
+    .mobile-music-toggle { display: none; }
+    .player-content { display: flex; align-items: center; gap: 15px; }
+}
+
+@media (max-width: 768px) {
+    .spotify-player {
+        top: auto;
+        bottom: 25px; /* Joga para baixo no celular para ficar fácil de tocar */
+        right: 20px;
+    }
+}
+
+
+/* --- SEÇÃO DO TEMPO (CONTADOR GIGANTE) --- */
+.giant-counter-box {
+    margin: 30px 0;
+}
+
+.giant-number {
+    font-size: 4.5rem;
+    font-weight: 900;
+    color: #1db954;
+    letter-spacing: -2px;
+    line-height: 1;
+}
+
+.giant-subtitle {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #ffb4a2;
+    margin-top: 10px;
+}
+
+/* --- ACCORDION (HISTÓRIAS) --- */
+.accordion-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.accordion-item {
+    background: rgba(0, 0, 0, 0.4);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: border-color 0.3s ease;
+}
+
+.accordion-item:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.accordion-header {
+    width: 100%;
+    padding: 20px;
+    background: transparent;
+    border: none;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    text-align: left;
+}
+
+.accordion-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.accordion-icon {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: #1db954; /* Verde Spotify */
+    transition: transform 0.3s ease, color 0.3s ease;
+    line-height: 1;
+}
+
+/* O conteúdo começa invisível e com altura zero */
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.accordion-content p {
+    padding: 0 20px 20px 20px;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: #e0e0e0;
+    margin: 0;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+}
+
+/* Animações quando a classe .active é adicionada pelo JavaScript */
+.accordion-item.active .accordion-icon {
+    transform: rotate(45deg); /* Gira o + para virar um X */
+    color: #fff;
+}
+
+.accordion-item.active .accordion-content {
+    max-height: 400px; /* Se o seu texto for muito longo, aumente este valor */
+}
+
+.accordion-item.active .accordion-content p {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+

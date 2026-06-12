@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <title>Nosso Retrospectiva 2026 ❤️</title>
+</head>
+<body>
+
+<div class="spotify-player collapsed" id="music-player" onclick="togglePlayerExpand()">
+    <div class="music-icon">❤️</div>    
+    
+    <div class="player-content">
+        <div class="player-cover">❤️</div>
+        <div class="player-track-info">
+            <div>
+                <p class="player-title">Nossa Música</p>
+                <p class="player-artist">Dia dos Namorados</p>
+            </div>
+        </div>
+        <button class="spotify-play-btn" id="play-button" onclick="toggleMúsica(event)">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                <path d="M8 5v14l11-7z"></path>
+            </svg>
+        </button>
+    </div>
+</div>
+    
+    <audio id="background-music" src="theabyss.mp3" loop></audio>
+
+    <main class="wrapped-scroller">
+
+        <section class="spotify-slide slide-blue">
+            <div class="wrapped-container reveal">
+                <span class="wrapped-badge">O que rolou até aqui</span>
+                <h1 class="wrapped-hero-title"><span class="highlight-text">Meu amor</span>, nossa retrospectiva de <br><span class="highlight-text">6 Meses</span> ficou pronta.</h1>
+                <div class="scroll-indicator">Deslize para baixo ▼</div>
+            </div>
+        </section>
+
+        <section class="spotify-slide slide-purple">
+            <div class="wrapped-container reveal">
+                <h2 class="wrapped-title">Você passou...</h2>
+                
+                <div class="giant-counter-box">
+                    <div id="contador-tempo" class="giant-number">00d 00h</div>
+                    <p class="giant-subtitle">Dias, Horas e Minutos ouvindo a minha voz (e eu a sua).</p>
+                </div>
+
+                <div class="stats-row">
+                    <p class="wrapped-desc">Isso coloca você no <strong>Top 0.1%</strong> das pessoas mais importantes do meu mundo.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="spotify-slide slide-green">
+            <div class="wrapped-container reveal">
+                <h2 class="wrapped-title">Nossos maiores hits</h2>
+                <p class="wrapped-desc" style="margin-bottom: 30px;">Essas foram as faixas mais tocadas da nossa história até agora.</p>
+                
+                <div class="spotify-poster-frame">
+    <div class="carousel-container">
+        
+        <button class="carousel-btn btn-prev" onclick="mudarFoto(-1)">&#10094;</button>
+        <button class="carousel-btn btn-next" onclick="mudarFoto(1)">&#10095;</button>
+
+            <div class="carousel-track" id="track-momentos">
+                
+                <div class="carousel-slide">
+                    <img src="imgs/IMG_5621.jpeg" alt="Momento 1">
+                </div>
+
+                <div class="carousel-slide">
+                    <img src="imgs/IMG_5099.jpeg" alt="Momento 2">
+                </div>
+
+                <div class="carousel-slide">
+                    <img src="imgs/IMG_5633.jpeg" alt="Momento 3">
+                </div>
+
+                <div class="carousel-slide">
+                    <img src="imgs/IMG_5412.jpeg" alt="Momento 3">
+                </div>
+
+                <div class="carousel-slide">
+                    <img src="imgs/IMG_5418.jpeg" alt="Momento 3">
+                </div>                
+
+                <div class="carousel-slide">
+                    <img src="imgs/IMG_5633.jpeg" alt="Momento 3">
+                </div>
+
+
+                <div class="carousel-slide">
+                    <img src="imgs/01422E85-923B-4CD2-A92A-1509F6EBCC35.JPG" alt="Momento 4">
+                </div>
+
+                <div class="carousel-slide">
+                    <img src="imgs/23E87A74-BF74-4BE1-A8DB-9935E0BC7F06.JPG" alt="">
+                </div>
+
+                <div class="carousel-slide">
+                    <img src="imgs/5054d7ee-00c4-4294-a400-9e82e0fea952.jpg " alt="">
+                </div>
+
+                </div>
+        </div>
+            </div>
+
+            </div>
+    </section>
+
+
+    <section class="spotify-slide slide-orange">
+            <div class="wrapped-container reveal">
+                <h2 class="wrapped-title">Momentos Especiais</h2>
+                <p class="wrapped-desc" style="margin-bottom: 30px;">As histórias por trás das nossas melhores faixas.</p>
+
+                <div class="accordion-container">
+                    
+                    <div class="accordion-item">
+                        <button class="accordion-header" onclick="toggleAccordion(this)">
+                            <span class="accordion-title">1. O dia em que tudo começou</span>
+                            <span class="accordion-icon">+</span>
+                        </button>
+                        <div class="accordion-content">
+                            <p>Sempre que lembro daquele dia me bate uma nostalgia boa. 
+                                Assim que estacionei o carro e te vi, sabia que seria você.
+                                E esse sentimento só se reforçou com o tempo. Nossa primeira conversa foi sensacional, e eu sabia que você era especial.
+
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header" onclick="toggleAccordion(this)">
+                            <span class="accordion-title">2. Nosso momento mais engraçado</span>
+                            <span class="accordion-icon">+</span>
+                        </button>
+                        <div class="accordion-content">
+                            <p>Lembra daquele dia em que rimos até a barriga doer? Coloque aqui aquela piada interna ou perrengue que hoje virou uma ótima memória.</p>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header" onclick="toggleAccordion(this)">
+                            <span class="accordion-title">3. O meu lugar favorito</span>
+                            <span class="accordion-icon">+</span>
+                        </button>
+                        <div class="accordion-content">
+                            <p>Porque até ficar no sofá fazendo nada com você é o meu evento favorito do dia. Cada segundo ao seu lado é especial.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <section id="surpresa" class="spotify-slide slide-dark">
+            <div class="wrapped-container reveal">
+                <div class="spotify-card-final" id="conteudo-card">
+                    <span class="wrapped-badge" style="background: #1db954; color: black;">#DiaDosNamorados</span>
+                    <h2 class="wrapped-title" style="font-size: 3rem; margin-top: 15px;">Feliz nosso dia! 🥂</h2>
+                    <p class="wrapped-desc" style="color: #b3b3b3;">Obrigado por ser a melhor companhia. Que a gente continue dando "Replay" nesses momentos bons.</p>
+                    
+                    <div class="buttons">
+                        <button class="btn btn-celebrar" onclick="celebrar()">COMEMORAR ❤️</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
